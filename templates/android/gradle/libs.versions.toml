@@ -1,0 +1,36 @@
+[versions]
+agp = "8.3.2"
+kotlin = "1.9.0"
+coreKtx = "1.13.1"
+lifecycleRuntimeKtx = "2.8.1"
+activityCompose = "1.9.0"
+composeBom = "2024.05.00"
+lynx = "3.4.1"
+primjs = "2.14.1"
+fresco = "2.3.0"
+okhttp = "4.9.0"
+
+[libraries]
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+androidx-ui = { group = "androidx.compose.ui", name = "ui" }
+androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+
+lynx-core = { group = "org.lynxsdk.lynx", name = "lynx", version.ref = "lynx" }
+lynx-jssdk = { group = "org.lynxsdk.lynx", name = "lynx-jssdk", version.ref = "lynx" }
+lynx-trace = { group = "org.lynxsdk.lynx", name = "lynx-trace", version.ref = "lynx" }
+lynx-service-image = { group = "org.lynxsdk.lynx", name = "lynx-service-image", version.ref = "lynx" }
+lynx-service-log = { group = "org.lynxsdk.lynx", name = "lynx-service-log", version.ref = "lynx" }
+lynx-service-http = { group = "org.lynxsdk.lynx", name = "lynx-service-http", version.ref = "lynx" }
+primjs = { group = "org.lynxsdk.lynx", name = "primjs", version.ref = "primjs" }
+
+fresco = { group = "com.facebook.fresco", name = "fresco", version.ref = "fresco" }
+fresco-animated-gif = { group = "com.facebook.fresco", name = "animated-gif", version.ref = "fresco" }
+okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }

@@ -1,0 +1,56 @@
+{
+  "name": "lynx-cli",
+  "version": "1.0.0",
+  "description": "🚀 CLI tool to generate native Android/iOS/Web projects for Lynx apps - like Capacitor for Lynx",
+  "main": "src/index.js",
+  "bin": {
+    "lynx": "./bin/lynx.js"
+  },
+  "scripts": {
+    "test": "node bin/lynx.js --help",
+    "dev": "node bin/lynx.js",
+    "build": "echo 'No build step needed'",
+    "prepublishOnly": "npm test"
+  },
+  "keywords": [
+    "lynx",
+    "lynxjs",
+    "native",
+    "android",
+    "ios", 
+    "web",
+    "cli",
+    "mobile",
+    "cross-platform",
+    "capacitor",
+    "react-native",
+    "cordova",
+    "bytedance"
+  ],
+  "author": "Lynx Community",
+  "license": "MIT",
+  "homepage": "https://github.com/1600822305/Lynx-Native-CLI#readme",
+  "bugs": {
+    "url": "https://github.com/1600822305/Lynx-Native-CLI/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1600822305/Lynx-Native-CLI.git"
+  },
+  "dependencies": {
+    "commander": "^12.1.0",
+    "chalk": "^4.1.2",
+    "fs-extra": "^11.2.0",
+    "inquirer": "^8.2.6",
+    "ora": "^5.4.1"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "files": [
+    "bin/",
+    "src/",
+    "templates/",
+    "README.md"
+  ]
+}
