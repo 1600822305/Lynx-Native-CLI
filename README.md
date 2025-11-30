@@ -25,6 +25,11 @@ npx lynx-cli init
 - 🛠 **IDE 集成**：一键打开 Android Studio / Xcode
 - 🏥 **环境检测**：`doctor` 命令检查开发环境
 - 📦 **生产就绪**：完整的构建和发布流程
+- 📱 **设备管理**：`devices` 命令列出连接设备
+- 📋 **实时日志**：`logs` 命令查看应用日志
+- 🧹 **智能清理**：`clean` 命令清理构建缓存
+- 🔐 **签名构建**：支持 APK 签名发布
+- 🎯 **架构选择**：支持 ARM64/ARM32/x86 单独构建
 
 ## 🚀 快速开始
 
@@ -99,11 +104,22 @@ lynx sync --platform android # 同步到指定平台
 ### 构建和运行
 
 ```bash
+# 基本构建
 lynx build android          # 构建 Debug APK
 lynx build android --release # 构建 Release APK
 lynx build ios              # 构建 iOS
 lynx build web              # 构建 Web
 
+# 架构特定构建
+lynx build android --arch arm64    # 只构建 ARM64 架构
+lynx build android --arch arm32    # 只构建 ARM32 架构
+lynx build android --arch x86      # 只构建 x86 架构
+lynx build android --arch universal # 通用 APK
+
+# 签名构建
+lynx build android --signed --release # 构建签名 APK
+
+# 运行应用
 lynx run android            # 安装并运行到设备
 lynx run ios                # 运行到 iOS 模拟器
 lynx run web                # 启动 Web 开发服务器
@@ -121,6 +137,34 @@ lynx open web               # 在 VS Code 中打开
 
 ```bash
 lynx doctor                 # 检查开发环境
+```
+
+### 设备管理
+
+```bash
+lynx devices                # 列出所有连接的设备
+lynx devices --android      # 只显示 Android 设备
+lynx devices --ios          # 只显示 iOS 设备
+```
+
+### 日志查看
+
+```bash
+lynx logs android           # 查看 Android 应用日志
+lynx logs android --device <id>  # 指定设备
+lynx logs android --level W # 设置日志级别 (V/D/I/W/E)
+lynx logs android --clear   # 清空历史日志
+lynx logs android --all     # 显示所有日志（不过滤应用）
+```
+
+### 项目清理
+
+```bash
+lynx clean                  # 清理所有构建缓存
+lynx clean --all            # 包括 node_modules
+lynx clean --android        # 只清理 Android 缓存
+lynx clean --ios            # 只清理 iOS 缓存
+lynx clean --native         # 只清理原生平台缓存
 ```
 
 ## 📁 项目结构
@@ -257,37 +301,56 @@ lynx-native run web
 
 ## 💡 开发技巧
 
-### 1. 热更新开发
+### 1. 完整开发工作流
 
 ```bash
-# 终端 1：启动 Lynx 开发服务器
-npm run dev
+# 1. 项目初始化
+lynx init
 
-# 终端 2：Web 预览
-lynx-native run web
+# 2. 添加平台
+lynx add android
+lynx add ios
 
-# 修改代码后自动同步
-lynx-native sync
+# 3. 开发调试
+npm run dev                    # 启动 Lynx 开发服务器
+lynx devices                   # 查看连接的设备
+lynx sync                      # 同步 bundle
+lynx run android               # 运行到设备
+lynx logs android              # 查看实时日志
+
+# 4. 构建发布
+npm run build                  # 构建 Lynx 应用
+lynx sync                      # 同步到原生项目
+lynx build android --arch arm64 --signed  # 构建签名 APK
 ```
 
-### 2. 多平台构建
+### 2. 调试技巧
 
 ```bash
-# 一次性构建所有平台
-npm run build
-lynx-native sync
-lynx-native build android --release
-lynx-native build ios --release
+# 环境检查
+lynx doctor
+
+# 设备管理
+lynx devices --android         # 只看 Android 设备
+lynx logs android --level E    # 只看错误日志
+lynx logs android --device xxx # 指定设备日志
+
+# 项目维护
+lynx clean                     # 清理构建缓存
+lynx clean --all              # 完全清理（包括依赖）
 ```
 
-### 3. 调试
+### 3. 构建优化
 
 ```bash
-# 检查环境
-lynx-native doctor
+# 小体积 APK（推荐）
+lynx build android --arch arm64
 
-# 查看详细日志
-lynx-native build android --verbose
+# 兼容性 APK
+lynx build android --arch universal
+
+# 发布版本
+lynx build android --signed --release --arch arm64
 ```
 
 ## 🤝 贡献
