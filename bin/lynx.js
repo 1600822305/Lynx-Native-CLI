@@ -11,6 +11,9 @@ const buildCommand = require('../src/commands/build');
 const openCommand = require('../src/commands/open');
 const runCommand = require('../src/commands/run');
 const doctorCommand = require('../src/commands/doctor');
+const devicesCommand = require('../src/commands/devices');
+const logsCommand = require('../src/commands/logs');
+const cleanCommand = require('../src/commands/clean');
 
 console.log(chalk.cyan(`
 ╦  ╦ ╦╔╗╔╔═╗  ╔╗╔╔═╗╔╦╗╦╦  ╦╔═╗
@@ -47,6 +50,7 @@ program
   .description('Build native project (android/ios/web)')
   .option('--release', 'Build release version')
   .option('--arch <architecture>', 'Build for specific architecture (arm64, arm32, x86, x86_64, universal)')
+  .option('--signed', 'Build signed APK (Android only)')
   .action(buildCommand);
 
 program
@@ -64,5 +68,30 @@ program
   .command('doctor')
   .description('Check environment and dependencies')
   .action(doctorCommand);
+
+program
+  .command('devices')
+  .description('List connected devices')
+  .option('--android', 'Show only Android devices')
+  .option('--ios', 'Show only iOS devices')
+  .action(devicesCommand);
+
+program
+  .command('logs <platform>')
+  .description('Show application logs')
+  .option('--device <deviceId>', 'Specific device to show logs for')
+  .option('--all', 'Show all logs (not filtered by app)')
+  .option('--level <level>', 'Log level (V/D/I/W/E)', 'I')
+  .option('--clear', 'Clear logs before showing')
+  .action(logsCommand);
+
+program
+  .command('clean')
+  .description('Clean project build caches')
+  .option('--all', 'Clean everything including node_modules')
+  .option('--android', 'Clean only Android')
+  .option('--ios', 'Clean only iOS')
+  .option('--native', 'Clean only native platforms')
+  .action(cleanCommand);
 
 program.parse();

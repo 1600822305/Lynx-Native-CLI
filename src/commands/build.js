@@ -42,6 +42,9 @@ async function buildCommand(platform, options) {
   if (options.arch) {
     console.log(chalk.gray(`Architecture: ${options.arch}`));
   }
+  if (options.signed) {
+    console.log(chalk.gray(`Signed: Yes`));
+  }
 
   if (platform === 'android') {
     await buildAndroid(platformDir, options);
@@ -54,11 +57,30 @@ async function buildAndroid(platformDir, options) {
   const isWindows = process.platform === 'win32';
   const gradlew = isWindows ? 'gradlew.bat' : './gradlew';
   
-  // 构建所有架构，然后用户可以选择需要的 APK
-  const task = options.release ? 'assembleRelease' : 'assembleDebug';
+  // 选择构建任务
+  let task;
+  if (options.signed) {
+    if (!options.release) {
+      console.log(chalk.yellow('ℹ Signed builds are typically Release builds, switching to Release mode'));
+    }
+    task = 'assembleRelease';
+  } else {
+    task = options.release ? 'assembleRelease' : 'assembleDebug';
+  }
   
   if (options.arch && options.arch !== 'universal') {
     console.log(chalk.yellow(`ℹ Building all architectures, then you can find ${options.arch} specific APK in output`));
+  }
+  
+  // 检查签名配置
+  if (options.signed) {
+    const hasKeystore = await checkKeystoreConfig(platformDir, options);
+    if (!hasKeystore) {
+      console.log(chalk.red('✗ Keystore configuration required for signed builds'));
+      console.log(chalk.gray('  Configure signing in android/app/build.gradle.kts'));
+      console.log(chalk.gray('  Or use: lynx keystore generate'));
+      return;
+    }
   }
 
   return new Promise((resolve, reject) => {
@@ -163,6 +185,27 @@ async function buildIOS(platformDir, options) {
       reject(error);
     });
   });
+}
+
+async function checkKeystoreConfig(platformDir, options) {
+  try {
+    const buildGradlePath = path.join(platformDir, 'app', 'build.gradle.kts');
+    
+    if (!fs.existsSync(buildGradlePath)) {
+      return false;
+    }
+
+    const buildGradleContent = await fs.readFile(buildGradlePath, 'utf8');
+    
+    // 检查是否有签名配置
+    const hasSigningConfigs = buildGradleContent.includes('signingConfigs');
+    const hasKeystore = buildGradleContent.includes('keystore') || 
+                       buildGradleContent.includes('storeFile');
+    
+    return hasSigningConfigs && hasKeystore;
+  } catch (error) {
+    return false;
+  }
 }
 
 function getArchInFileName(arch) {
