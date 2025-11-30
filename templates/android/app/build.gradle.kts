@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "__APP_ID__"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -17,11 +17,25 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+        }
+        debug {
+            isMinifyEnabled = false
+        }
+    }
+    
+    // 配置 ABI 拆分，生成单独的 arm64 APK
+    splits {
+        abi {
+            isEnable = true
+            reset()
+            include("arm64-v8a")  // 只构建 arm64 架构
+            isUniversalApk = false // 不生成通用 APK
         }
     }
     compileOptions {

@@ -46,6 +46,7 @@ program
   .command('build <platform>')
   .description('Build native project (android/ios/web)')
   .option('--release', 'Build release version')
+  .option('--arch <architecture>', 'Build for specific architecture (arm64, arm32, x86, x86_64, universal)')
   .action(buildCommand);
 
 program
