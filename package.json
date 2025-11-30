@@ -1,5 +1,5 @@
 {
-  "name": "lynx-cli",
+  "name": "lynx-native-cli",
   "version": "1.0.0",
   "description": "🚀 CLI tool to generate native Android/iOS/Web projects for Lynx apps - like Capacitor for Lynx",
   "main": "src/index.js",
