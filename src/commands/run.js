@@ -46,40 +46,23 @@ async function runCommand(platform, options) {
 }
 
 async function runAndroid(platformDir, options) {
-  const isWindows = process.platform === 'win32';
-  const gradlew = isWindows ? 'gradlew.bat' : './gradlew';
-  const task = options.release ? 'installRelease' : 'installDebug';
-
-  return new Promise((resolve, reject) => {
-    console.log(chalk.gray(`Running: ${gradlew} ${task}\n`));
-
-    const child = spawn(gradlew, [task], {
-      cwd: platformDir,
-      stdio: 'inherit',
-      shell: true
+  console.log(chalk.cyan('Running Android app...'));
+  
+  // 导入 install 命令的逻辑
+  const installCommand = require('./install');
+  
+  try {
+    // 使用 install 命令安装并启动应用
+    await installCommand('android', {
+      ...options,
+      launch: true // 确保启动应用
     });
-
-    child.on('close', (code) => {
-      if (code === 0) {
-        console.log('\n' + chalk.green('✓ App installed successfully!'));
-        
-        // Try to launch the app
-        const packageName = getAndroidPackageName(platformDir);
-        if (packageName) {
-          console.log(chalk.cyan('\nLaunching app...'));
-          spawn('adb', ['shell', 'am', 'start', '-n', `${packageName}/.MainActivity`], {
-            stdio: 'inherit',
-            shell: true
-          });
-        }
-        
-        resolve();
-      } else {
-        console.log('\n' + chalk.red(`✗ Build failed with code ${code}`));
-        reject(new Error(`Build failed with code ${code}`));
-      }
-    });
-  });
+    
+    console.log(chalk.green('\n✓ App successfully installed and launched!'));
+  } catch (error) {
+    console.log(chalk.red('\n✗ Failed to run app'));
+    throw error;
+  }
 }
 
 async function runIOS(platformDir, options) {

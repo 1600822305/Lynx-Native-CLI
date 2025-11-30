@@ -14,6 +14,7 @@ const doctorCommand = require('../src/commands/doctor');
 const devicesCommand = require('../src/commands/devices');
 const logsCommand = require('../src/commands/logs');
 const cleanCommand = require('../src/commands/clean');
+const installCommand = require('../src/commands/install');
 
 console.log(chalk.cyan(`
 ╦  ╦ ╦╔╗╔╔═╗  ╔╗╔╔═╗╔╦╗╦╦  ╦╔═╗
@@ -62,7 +63,18 @@ program
   .command('run <platform>')
   .description('Build and run on device/emulator')
   .option('--release', 'Run release version')
+  .option('--device <deviceId>', 'Specific device to run on')
   .action(runCommand);
+
+program
+  .command('install <platform>')
+  .description('Install APK to connected device')
+  .option('--release', 'Install release version')
+  .option('--device <deviceId>', 'Specific device to install to')
+  .option('--arch <architecture>', 'Preferred architecture (arm64, arm32, x86, x86_64)')
+  .option('--force', 'Force reinstall (replace existing app)')
+  .option('--no-launch', 'Do not launch app after installation')
+  .action(installCommand);
 
 program
   .command('doctor')
