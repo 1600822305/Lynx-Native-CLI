@@ -9,13 +9,15 @@
 ## 📦 安装
 
 ```bash
-npm install -g lynx-cli
+npm install -g lynx-native-cli
 ```
 
 或者直接使用 npx：
 ```bash
-npx lynx-cli init
+npx lynx-native-cli init
 ```
+
+> ⚠️ **注意**: 请确保安装的是 `lynx-native-cli` 而不是 `lynx-cli`（这是另一个不同的包）
 
 ## ✨ 特性
 
