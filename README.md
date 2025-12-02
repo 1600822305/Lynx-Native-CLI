@@ -1,5 +1,7 @@
 # 🚀 Lynx Native CLI
 
+**🌐 Language / 语言**: [中文](#) | [English](./README.en.md)
+
 > 一键生成 Android、iOS、Web 原生项目的 Lynx CLI 工具
 > 
 > Generate native Android/iOS/Web projects for Lynx apps with one command

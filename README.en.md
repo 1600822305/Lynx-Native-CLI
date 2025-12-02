@@ -1,5 +1,7 @@
 # 🚀 Lynx Native CLI
 
+**🌐 Language / 语言**: [中文](./README.md) | [English](#)
+
 > Generate native Android/iOS/Web projects for Lynx apps with one command
 >
 > Like Capacitor, but for Lynx!
