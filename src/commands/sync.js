@@ -10,7 +10,7 @@ async function syncCommand(options) {
   const configPath = path.join(process.cwd(), CONFIG_FILE);
   if (!fs.existsSync(configPath)) {
     console.log(chalk.red(`✗ ${CONFIG_FILE} not found.`));
-    console.log(chalk.gray('  Run "lynx-native init" first.'));
+    console.log(chalk.gray('  Run "lynx init" first.'));
     return;
   }
 
@@ -37,7 +37,7 @@ async function syncCommand(options) {
 
   if (platforms.length === 0) {
     console.log(chalk.yellow('⚠ No platforms added yet.'));
-    console.log(chalk.gray('  Run "lynx-native add android" or "lynx-native add ios" first.'));
+    console.log(chalk.gray('  Run "lynx add android" or "lynx add ios" first.'));
     return;
   }
 

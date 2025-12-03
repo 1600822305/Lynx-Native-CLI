@@ -75,11 +75,11 @@ async function initCommand() {
     spinner.succeed(chalk.green('Configuration created!'));
     
     console.log('\n' + chalk.cyan('Next steps:'));
-    console.log(chalk.white('  1. Add Android platform:  ') + chalk.yellow('lynx-native add android'));
-    console.log(chalk.white('  2. Add iOS platform:      ') + chalk.yellow('lynx-native add ios'));
+    console.log(chalk.white('  1. Add Android platform:  ') + chalk.yellow('lynx add android'));
+    console.log(chalk.white('  2. Add iOS platform:      ') + chalk.yellow('lynx add ios'));
     console.log(chalk.white('  3. Build your Lynx app:   ') + chalk.yellow('npm run build'));
-    console.log(chalk.white('  4. Sync to native:        ') + chalk.yellow('lynx-native sync'));
-    console.log(chalk.white('  5. Build APK/IPA:         ') + chalk.yellow('lynx-native build android'));
+    console.log(chalk.white('  4. Sync to native:        ') + chalk.yellow('lynx sync'));
+    console.log(chalk.white('  5. Build APK/IPA:         ') + chalk.yellow('lynx build android'));
   } catch (error) {
     spinner.fail(chalk.red('Failed to create configuration'));
     console.error(error);

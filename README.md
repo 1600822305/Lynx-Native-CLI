@@ -246,10 +246,10 @@ my-lynx-project/
 
 ```bash
 # Debug APK
-lynx-native build android
+lynx build android
 
 # Release APK  
-lynx-native build android --release
+lynx build android --release
 ```
 
 APK 输出位置：`android/app/build/outputs/apk/`
@@ -257,7 +257,7 @@ APK 输出位置：`android/app/build/outputs/apk/`
 ### 在设备上运行
 
 ```bash
-lynx-native run android
+lynx run android
 ```
 
 ## 🍎 iOS 开发
@@ -272,8 +272,8 @@ pod install
 ### 构建和运行
 
 ```bash
-lynx-native build ios
-lynx-native run ios    # 在模拟器中运行
+lynx build ios
+lynx run ios    # 在模拟器中运行
 ```
 
 ## 🌐 Web 开发
@@ -288,7 +288,7 @@ npm install
 ### 开发服务器
 
 ```bash
-lynx-native run web
+lynx run web
 ```
 
 访问：http://localhost:3000

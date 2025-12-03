@@ -19,7 +19,7 @@ async function buildCommand(platform, options) {
   const configPath = path.join(process.cwd(), CONFIG_FILE);
   if (!fs.existsSync(configPath)) {
     console.log(chalk.red(`✗ ${CONFIG_FILE} not found.`));
-    console.log(chalk.gray('  Run "lynx-native init" first.'));
+    console.log(chalk.gray('  Run "lynx init" first.'));
     return;
   }
 
@@ -27,7 +27,7 @@ async function buildCommand(platform, options) {
 
   if (!config.platforms[platform]) {
     console.log(chalk.red(`✗ Platform ${platform} not added.`));
-    console.log(chalk.gray(`  Run "lynx-native add ${platform}" first.`));
+    console.log(chalk.gray(`  Run "lynx add ${platform}" first.`));
     return;
   }
 

@@ -19,7 +19,7 @@ async function addCommand(platform, options) {
   const configPath = path.join(process.cwd(), CONFIG_FILE);
   if (!fs.existsSync(configPath)) {
     console.log(chalk.red(`✗ ${CONFIG_FILE} not found.`));
-    console.log(chalk.gray('  Run "lynx-native init" first.'));
+    console.log(chalk.gray('  Run "lynx init" first.'));
     return;
   }
 
@@ -77,22 +77,22 @@ async function addCommand(platform, options) {
     if (platform === 'android') {
       console.log('\n' + chalk.cyan('Next steps:'));
       console.log(chalk.white('  1. Build your Lynx app:  ') + chalk.yellow('npm run build'));
-      console.log(chalk.white('  2. Sync bundle:          ') + chalk.yellow('lynx-native sync'));
+      console.log(chalk.white('  2. Sync bundle:          ') + chalk.yellow('lynx sync'));
       console.log(chalk.white('  3. Open in Android Studio or run:'));
-      console.log(chalk.yellow(`     lynx-native open android`));
-      console.log(chalk.yellow(`     lynx-native build android`));
+      console.log(chalk.yellow(`     lynx open android`));
+      console.log(chalk.yellow(`     lynx build android`));
     } else if (platform === 'ios') {
       console.log('\n' + chalk.cyan('Next steps:'));
       console.log(chalk.white('  1. Build your Lynx app:  ') + chalk.yellow('npm run build'));
       console.log(chalk.white('  2. Install CocoaPods:    ') + chalk.yellow(`cd ios && pod install`));
-      console.log(chalk.white('  3. Sync bundle:          ') + chalk.yellow('lynx-native sync'));
-      console.log(chalk.white('  4. Open in Xcode:        ') + chalk.yellow('lynx-native open ios'));
+      console.log(chalk.white('  3. Sync bundle:          ') + chalk.yellow('lynx sync'));
+      console.log(chalk.white('  4. Open in Xcode:        ') + chalk.yellow('lynx open ios'));
     } else if (platform === 'web') {
       console.log('\n' + chalk.cyan('Next steps:'));
       console.log(chalk.white('  1. Install dependencies: ') + chalk.yellow(`cd web && npm install`));
       console.log(chalk.white('  2. Build your Lynx app:  ') + chalk.yellow('npm run build'));
-      console.log(chalk.white('  3. Sync bundle:          ') + chalk.yellow('lynx-native sync'));
-      console.log(chalk.white('  4. Run dev server:       ') + chalk.yellow('lynx-native run web'));
+      console.log(chalk.white('  3. Sync bundle:          ') + chalk.yellow('lynx sync'));
+      console.log(chalk.white('  4. Run dev server:       ') + chalk.yellow('lynx run web'));
     }
 
   } catch (error) {

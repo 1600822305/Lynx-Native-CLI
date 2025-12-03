@@ -57,7 +57,7 @@ async function doctorCommand() {
     }
   } else {
     console.log(chalk.yellow('\n⚠ No Lynx Native project found in current directory'));
-    console.log(chalk.gray('  Run "lynx-native init" to initialize a project'));
+    console.log(chalk.gray('  Run "lynx init" to initialize a project'));
   }
 
   // Summary

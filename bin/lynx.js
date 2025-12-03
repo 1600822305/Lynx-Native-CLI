@@ -24,7 +24,7 @@ console.log(chalk.cyan(`
 console.log(chalk.gray(`v${pkg.version} - Generate native projects for Lynx apps\n`));
 
 program
-  .name('lynx-native')
+  .name('lynx')
   .description('CLI to generate native Android/iOS projects for Lynx applications')
   .version(pkg.version);
 

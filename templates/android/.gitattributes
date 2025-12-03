@@ -1,0 +1,23 @@
+# Handle line endings automatically for files detected as text
+* text=auto
+
+# Explicitly declare text files you want to always be normalized and converted to native line endings
+*.kt text
+*.java text
+*.xml text
+*.properties text
+*.gradle text
+*.kts text
+
+# Declare files that will always have CRLF line endings on checkout (Windows)
+*.bat text eol=crlf
+
+# Declare files that will always have LF line endings on checkout (Unix/macOS)
+# gradlew must have LF line endings and executable permission
+gradlew text eol=lf
+
+# Binary files
+*.jar binary
+*.png binary
+*.jpg binary
+*.gif binary
