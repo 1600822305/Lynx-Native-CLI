@@ -2,9 +2,9 @@
 
 **🌐 Language / 语言**: [中文](#) | [English](./README.en.md)
 
-> 一键生成 Android、iOS、Web 原生项目的 Lynx CLI 工具
+> 一键生成 Android、iOS、Web、HarmonyOS 原生项目的 Lynx CLI 工具
 > 
-> Generate native Android/iOS/Web projects for Lynx apps with one command
+> Generate native Android/iOS/Web/HarmonyOS projects for Lynx apps with one command
 
 像 Capacitor 一样简单的 Lynx 跨平台开发工具！
 
@@ -24,7 +24,7 @@ npx lynx-native-cli init
 ## ✨ 特性
 
 - 🎯 **一键生成**：`lynx add android` 生成完整的 Android 项目
-- 📱 **多平台支持**：Android、iOS、Web
+- 📱 **多平台支持**：Android、iOS、Web、HarmonyOS (鸿蒙)
 - 🔄 **自动同步**：Bundle 文件自动同步到原生项目
 - 🛠 **IDE 集成**：一键打开 Android Studio / Xcode
 - 🏥 **环境检测**：`doctor` 命令检查开发环境
@@ -55,6 +55,9 @@ lynx add ios
 
 # Web
 lynx add web
+
+# HarmonyOS (鸿蒙)
+lynx add harmony
 ```
 
 ### 3. 构建 Lynx 应用
@@ -96,6 +99,7 @@ lynx init                    # 创建配置文件
 lynx add android             # 添加 Android 项目
 lynx add ios                 # 添加 iOS 项目  
 lynx add web                 # 添加 Web 项目
+lynx add harmony             # 添加 HarmonyOS 项目
 ```
 
 ### 开发工作流
@@ -196,6 +200,11 @@ my-lynx-project/
 │   ├── public/assets/
 │   │   └── main.lynx.bundle
 │   └── package.json
+├── harmony/                      # HarmonyOS 项目
+│   ├── lynx_explorer/
+│   │   └── src/main/resources/rawfile/
+│   │       └── main.lynx.bundle
+│   └── oh-package.json5
 └── lynx.config.json              # CLI 配置
 ```
 
@@ -213,6 +222,11 @@ my-lynx-project/
 
 ### Web
 - **Node.js** >= 16
+
+### HarmonyOS (鸿蒙)
+- **DevEco Studio** 4.0+
+- **HarmonyOS SDK** 5.0+
+- **ohpm** 包管理器
 
 运行 `lynx doctor` 检查你的环境。
 
@@ -235,6 +249,9 @@ my-lynx-project/
     },
     "web": {
       "path": "web"
+    },
+    "harmony": {
+      "path": "harmony"
     }
   }
 }

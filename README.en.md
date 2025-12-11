@@ -2,7 +2,7 @@
 
 **🌐 Language / 语言**: [中文](./README.md) | [English](#)
 
-> Generate native Android/iOS/Web projects for Lynx apps with one command
+> Generate native Android/iOS/Web/HarmonyOS projects for Lynx apps with one command
 >
 > Like Capacitor, but for Lynx!
 
@@ -22,7 +22,7 @@ npx lynx-native-cli init
 ## ✨ Features
 
 - 🎯 **One-click Generation**: `lynx add android` generates a complete Android project
-- 📱 **Multi-platform Support**: Android, iOS, Web
+- 📱 **Multi-platform Support**: Android, iOS, Web, HarmonyOS
 - 🔄 **Auto Sync**: Bundle files automatically sync to native projects
 - 🛠 **IDE Integration**: One-click open Android Studio / Xcode
 - 🏥 **Environment Check**: `doctor` command checks your dev environment
@@ -53,6 +53,9 @@ lynx add ios
 
 # Web
 lynx add web
+
+# HarmonyOS
+lynx add harmony
 ```
 
 ### 3. Build your Lynx app
@@ -94,6 +97,7 @@ lynx init                    # Create configuration file
 lynx add android             # Add Android project
 lynx add ios                 # Add iOS project  
 lynx add web                 # Add Web project
+lynx add harmony             # Add HarmonyOS project
 ```
 
 ### Development Workflow
@@ -194,6 +198,11 @@ my-lynx-project/
 │   ├── public/assets/
 │   │   └── main.lynx.bundle
 │   └── package.json
+├── harmony/                      # HarmonyOS project
+│   ├── lynx_explorer/
+│   │   └── src/main/resources/rawfile/
+│   │       └── main.lynx.bundle
+│   └── oh-package.json5
 └── lynx.config.json              # CLI configuration
 ```
 
@@ -211,6 +220,11 @@ my-lynx-project/
 
 ### Web
 - **Node.js** >= 16
+
+### HarmonyOS
+- **DevEco Studio** 4.0+
+- **HarmonyOS SDK** 5.0+
+- **ohpm** package manager
 
 Run `lynx doctor` to check your environment.
 
@@ -233,6 +247,9 @@ Run `lynx doctor` to check your environment.
     },
     "web": {
       "path": "web"
+    },
+    "harmony": {
+      "path": "harmony"
     }
   }
 }
