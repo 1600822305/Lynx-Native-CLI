@@ -66,14 +66,33 @@ async function syncCommand(options) {
       // Copy bundle
       await fs.copy(bundlePath, path.join(assetsDir, config.bundleName));
 
-      // Copy static assets if they exist
-      const staticDir = path.join(distDir, 'static');
-      if (fs.existsSync(staticDir)) {
-        await fs.copy(staticDir, path.join(assetsDir, 'static'));
+      // Copy all files and directories from dist (except bundle itself and hidden files)
+      const distItems = await fs.readdir(distDir);
+      let copiedAssets = [];
+      
+      for (const item of distItems) {
+        // Skip bundle file, hidden files/dirs
+        if (item === config.bundleName || item.startsWith('.')) {
+          continue;
+        }
+        
+        const itemPath = path.join(distDir, item);
+        const destPath = path.join(assetsDir, item);
+        
+        try {
+          await fs.copy(itemPath, destPath);
+          copiedAssets.push(item);
+        } catch (e) {
+          // Ignore copy errors for individual items
+        }
       }
 
       spinner.succeed(chalk.green(`Synced to ${platform}`));
       console.log(chalk.gray(`  → ${assetsDir}`));
+      
+      if (copiedAssets.length > 0) {
+        console.log(chalk.gray(`  Assets copied: ${copiedAssets.join(', ')}`));
+      }
 
     } catch (error) {
       spinner.fail(chalk.red(`Failed to sync to ${platform}`));

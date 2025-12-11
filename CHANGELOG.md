@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.2] - 2025-12-12
+
+### Fixed
+- 🖼️ Fixed issue where images/logo not showing in official rspeedy examples (#5)
+  - Added `LocalMediaFetcher` class to Android template for handling local resource URL redirection
+  - Updated `LynxApplication` to register the media resource fetcher with `LynxEnvBuilder`
+  - Improved `sync` command to copy all resource files from dist directory (not just static folder)
+
 ## [1.0.0] - 2025-11-30
 
 ### Added
