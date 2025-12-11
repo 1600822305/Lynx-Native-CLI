@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.2] - 2025-12-12
+
+### Added
+- 🖥️ Edge-to-edge fullscreen mode support with toggle switch in MainActivity
+  - `enableEdgeToEdge = true` to enable immersive mode
+  - Compatible with Android 10+ (API 29+)
+  - Transparent status bar and navigation bar
+
+### Fixed
+- 🐛 Fixed edge-to-edge crash: `setupEdgeToEdge()` must be called after `setContentView()`
+
 ## [1.4.1] - 2025-12-12
 
 ### Fixed
