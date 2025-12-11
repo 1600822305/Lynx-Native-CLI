@@ -58,6 +58,8 @@ async function syncCommand(options) {
         assetsDir = path.join(process.cwd(), 'ios', 'App', 'Assets');
       } else if (platform === 'web') {
         assetsDir = path.join(process.cwd(), 'web', 'public', 'assets');
+      } else if (platform === 'harmony') {
+        assetsDir = path.join(process.cwd(), 'harmony', 'lynx_explorer', 'src', 'main', 'resources', 'rawfile');
       }
 
       // Ensure assets directory exists

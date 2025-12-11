@@ -9,9 +9,9 @@ const CONFIG_FILE = 'lynx.config.json';
 async function addCommand(platform, options) {
   platform = platform.toLowerCase();
   
-  if (!['android', 'ios', 'web'].includes(platform)) {
+  if (!['android', 'ios', 'web', 'harmony'].includes(platform)) {
     console.log(chalk.red(`✗ Invalid platform: ${platform}`));
-    console.log(chalk.gray('  Supported platforms: android, ios, web'));
+    console.log(chalk.gray('  Supported platforms: android, ios, web, harmony'));
     return;
   }
 
@@ -93,6 +93,12 @@ async function addCommand(platform, options) {
       console.log(chalk.white('  2. Build your Lynx app:  ') + chalk.yellow('npm run build'));
       console.log(chalk.white('  3. Sync bundle:          ') + chalk.yellow('lynx sync'));
       console.log(chalk.white('  4. Run dev server:       ') + chalk.yellow('lynx run web'));
+    } else if (platform === 'harmony') {
+      console.log('\n' + chalk.cyan('Next steps:'));
+      console.log(chalk.white('  1. Build your Lynx app:  ') + chalk.yellow('npm run build'));
+      console.log(chalk.white('  2. Sync bundle:          ') + chalk.yellow('lynx sync'));
+      console.log(chalk.white('  3. Install dependencies: ') + chalk.yellow('cd harmony && ohpm install'));
+      console.log(chalk.white('  4. Open in DevEco Studio and build'));
     }
 
   } catch (error) {
@@ -139,7 +145,7 @@ async function replacePlaceholders(dir, replacements) {
     } else {
       // Replace content in files
       const ext = path.extname(file).toLowerCase();
-      const textExtensions = ['.java', '.kt', '.xml', '.gradle', '.kts', '.properties', '.swift', '.m', '.h', '.plist', '.json', '.js', '.ts'];
+      const textExtensions = ['.java', '.kt', '.xml', '.gradle', '.kts', '.properties', '.swift', '.m', '.h', '.plist', '.json', '.json5', '.js', '.ts', '.ets'];
       
       if (textExtensions.includes(ext) || file === 'gradlew' || file === 'Podfile') {
         let content = await fs.readFile(filePath, 'utf8');

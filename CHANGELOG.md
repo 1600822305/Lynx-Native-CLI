@@ -2,7 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
-## [1.3.2] - 2025-12-12
+## [1.4.0] - 2025-12-12
+
+### Added
+- 🎉 HarmonyOS (鸿蒙) platform support (#4)
+  - Added official Lynx HarmonyOS template from lynx-family/lynx repository
+  - `lynx add harmony` command to generate HarmonyOS project
+  - `lynx sync` now supports syncing bundle to HarmonyOS rawfile directory
 
 ### Fixed
 - 🖼️ Fixed issue where images/logo not showing in official rspeedy examples (#5)
